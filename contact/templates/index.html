@@ -1,0 +1,86 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Billing Tasks</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+        <!-- main css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    </head>
+    <body>
+        
+        <!--================Header Menu Area =================-->
+        <header class="header_area">
+            <div class="main_menu">
+            	<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container box_1620">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<a class="navbar-brand logo_h" href="{% url 'home' %}"><img src="{{ logo.image.url }}" alt=""></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+							<ul class="nav navbar-nav menu_nav ml-auto">
+								<li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Отправить заявку</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="{% url 'my_apps' %}">Мои заявки</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="{% url 'reset_password' %}">Сменить пароль</a></li>
+								<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">выйти</a></li>
+								<li class="nav-item"><a class="nav-link">добро пожаловать / {{ request.user }}</a></li>
+							</ul>
+						</div> 
+					</div>
+            	</nav>
+            </div>
+        </header>
+
+
+        <section class="home_banner_area">
+           	<div class="container box_1620">
+           		<div class="banner_inner d-flex align-items-center">
+					<div class="banner_content">
+						<div class="media">
+							<div class="d-flex">
+								<img src="{{ personal_info.image.url }}" alt="">
+							</div>
+                            <div class="media-body">
+                                <div class="personal_text">
+                                    <h6>Привет всем, я</h6>
+                                    <h3>Муродали Нарзуллаев</h3>
+                                    <h4>Биллинг администратор</h4>
+                                    <p>Вы можете оставить ваши заявки про биллинг в этом сайте</p>
+                                    <ul class="list basic_info">
+                                        <li><a target="_blank"
+                                               href="tel:+998{{ personal_info.number_code }}{{ personal_info.number }}"><i
+                                                class="lnr {{ personal_info.number_icon }}"></i> +998
+                                            ({{ personal_info.number_code }}) {{ personal_info.number }}</a></li>
+                                        <li><a target="_blank" href="mailto:{{ personal_info.mail }}"><i
+                                                class="lnr {{ personal_info.mail_icon }}"></i> {{ personal_info.mail }}
+                                        </a></li>
+                                        <li><a target="_blank" href="https://t.me/{{ personal_info.telegram }}"><i
+                                                class="lnr {{ personal_info.telegram_icon }}"></i> {{ personal_info.telegram }}
+                                        </a></li>
+                                    </ul>
+                                    <a class="btn btn-outline-danger pl-4 pr-4 mt-4" href="{% url 'contact' %}">Отправить заявку</a>
+                                </div>
+                            </div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </section>
+
+        
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

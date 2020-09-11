@@ -1,0 +1,124 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Billing Tasks</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'vendors/linericon/style.css' %}">
+        <!-- main css -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    </head>
+    <body>
+        
+        <!--================Header Menu Area =================-->
+        <header class="header_area">
+            <div class="main_menu">
+            	<nav class="navbar navbar-expand-lg navbar-light">
+					<div class="container box_1620">
+						<!-- Brand and toggle get grouped for better mobile display -->
+						<a class="navbar-brand logo_h" href="{% url 'home' %}"><img src="{{ logo.image.url }}" alt=""></a>
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+							<ul class="nav navbar-nav menu_nav ml-auto">
+								<li class="nav-item active"><a class="nav-link" href="{% url 'home' %}">Домой</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="{% url 'my_apps' %}">Мои заявки</a></li>
+                                <li class="nav-item active"><a class="nav-link" href="{% url 'reset_password' %}">Сменить пароль</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">выйти</a></li>
+								<li class="nav-item"><a class="nav-link">добро пожаловать / {{ request.user }}</a></li>
+							</ul>
+						</div>
+					</div>
+            	</nav>
+            </div>
+        </header>
+        <!--================Header Menu Area =================-->
+
+        <!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="box_1620">
+				<div class="banner_inner d-flex align-items-center">
+					<div class="container">
+						<div class="banner_content text-center">
+							<h2>Отправить заявку</h2>
+							<div class="page_link">
+								<a href="{% url 'home' %}">Домой</a>
+								<a href="{% url 'contact' %}">Отправить заявку</a>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+
+        <!--================Contact Area =================-->
+        <section class="contact_area">
+            <div class="container">
+                <div id="mapBox" class="mapBox"
+                    data-lat="40.701083"
+                    data-lon="-74.1522848"
+                    data-zoom="13"
+                    data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia."
+                    data-mlat="40.701083"
+                    data-mlon="-74.1522848">
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <form  class="row contact_form" action="" method="POST" id="contactForm" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p>Имя пользователя</p>
+{#                                    {{ form.user }}#}
+                                    <input type="text" class="form-control" readonly value="{{ request.user }}">
+                                </div>
+                                <div class="form-group">
+                                    <p>Тип Заявки</p>
+                                    {{ form.type }}
+                                </div>
+                                <div class="form-group">
+                                    <p>Файл <span style="color: darkred"> (Не требуется*)</span></p>
+                                    {{ form.file }}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <p>Напишите свои заявки здесь</p>
+                                    {{ form.task }}
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-right">
+                                <button type="submit" value="submit" class="btn submit_btn">Отправить</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        
+        
+        
+        <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+        <script src="{% static 'js/popper.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
